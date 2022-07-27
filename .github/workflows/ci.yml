@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
   release:
     types: [ created ]
 
@@ -28,11 +28,7 @@ jobs:
   build_linux1_64:
     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Execute the build
-        uses: docker://quay.io/pypa/manylinux1_x86_64
-        with:
+    steps:master
           entrypoint: bash
           args: /github/workspace/.github/workflows/build.sh
       - name: Archive built wheels
