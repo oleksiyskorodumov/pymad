@@ -2,19 +2,19 @@
 
 """Setup script for the MAD module distribution."""
 
-import sys
 import setuptools
 import distutils.core
-import os.path
 
 VERSION_MAJOR = 0
-VERSION_MINOR = 10
+VERSION_MINOR = 1
 PYMAD_VERSION = str(VERSION_MAJOR) + '.' + str(VERSION_MINOR)
 
 
-DEFINES = [('VERSION_MAJOR', VERSION_MAJOR),
-           ('VERSION_MINOR', VERSION_MINOR),
-           ('VERSION', '"%s"' % PYMAD_VERSION)]
+DEFINES = [
+    ('VERSION_MAJOR', VERSION_MAJOR),
+    ('VERSION_MINOR', VERSION_MINOR),
+    ('VERSION', '"%s"' % PYMAD_VERSION)
+]
 
 MADMODULE = distutils.core.Extension(
     name='mad',
@@ -22,14 +22,30 @@ MADMODULE = distutils.core.Extension(
     define_macros=DEFINES,
     include_dirs=['libmad'],
     library_dirs=['libmad/.libs'],
-    libraries=['mad'])
+    libraries=['mad']
+)
+
+project_urls = {
+    'GitHub': 'https://github.com/oleksiyskorodumov/pymad'
+}
+
+classifiers=[
+    'Topic :: Multimedia :: Sound/Audio :: Conversion',
+    'Programming Language :: Python :: 3 :: Only',
+    'License :: OSI Approved :: GNU General Public License v2 (GPLv2)',
+    'Operating System :: POSIX :: Linux'
+]
 
 setuptools.setup(  # Distribution metadata
-    name='pymad',
+    name='pylibmad',
     version=PYMAD_VERSION,
-    description='A wrapper for the MAD libraries.',
+    description='A Python wrapper for the MPEG Audio Decoder library.',
     author='Jamie Wilkinson',
     author_email='jaq@spacepants.org',
-    url='http://spacepants.org/src/pymad/',
+    project_urls=project_urls,
     license='GPL',
-    ext_modules=[MADMODULE])
+    keywords='libmad mp3 decoder',
+    classifiers=classifiers,
+    python_requires='>=3.5',
+    ext_modules=[MADMODULE]
+)
