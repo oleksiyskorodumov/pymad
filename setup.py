@@ -34,4 +34,5 @@ setup(  # Distribution metadata
     author_email='jaq@spacepants.org',
     url='http://spacepants.org/src/pymad/',
     license='GPL',
+    setup_requires=['wheel'],
     ext_modules=[MADMODULE])
