@@ -19,7 +19,7 @@ make
 # setup .whl
 cd ..
 for PYBIN in /opt/python/*/bin; do
-    if [[ $PYBIN = *"cp27"* || $PYBIN = *"cp35"* || $PYBIN = *"cp36"* ]]; then
+    if [[ $PYBIN = *"cp27"* || $PYBIN = *"cp35"* ]]; then
         continue
     fi
     "${PYBIN}/python" setup.py bdist_wheel -d dist
