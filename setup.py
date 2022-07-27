@@ -36,10 +36,14 @@ classifiers=[
     'Operating System :: POSIX :: Linux'
 ]
 
+long_description = "pymad is a Python module that allows Python programs to use the MPEG Audio Decoder library. " \
+                   "pymad provides a high-level API, which reading PCM data from MPEG audio streams."
+
 setuptools.setup(  # Distribution metadata
     name='pylibmad',
     version=PYMAD_VERSION,
     description='A Python wrapper for the MPEG Audio Decoder library.',
+    long_description=long_description,
     author='Jamie Wilkinson',
     author_email='jaq@spacepants.org',
     project_urls=project_urls,

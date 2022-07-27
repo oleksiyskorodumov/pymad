@@ -41,3 +41,54 @@ jobs:
           name: manylinux1_64
           path: build/*.whl
           if-no-files-found: error
+
+  build_linux1_32:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Execute the build
+        uses: docker://quay.io/pypa/manylinux1_i686
+        with:
+          entrypoint: linux32
+          args: bash /github/workspace/.github/workflows/build.sh
+      - name: Archive built wheels
+        uses: actions/upload-artifact@v2
+        with:
+          name: manylinux1_32
+          path: build/*.whl
+          if-no-files-found: error
+
+  build_linux2_24_64:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Execute the build
+        uses: docker://quay.io/pypa/manylinux_2_24_x86_64
+        with:
+          entrypoint: bash
+          args: /github/workspace/.github/workflows/build.sh
+      - name: Archive built wheels
+        uses: actions/upload-artifact@v2
+        with:
+          name: manylinux2_24_64
+          path: build/*.whl
+          if-no-files-found: error
+
+  build_linux2_24_32:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Execute the build
+        uses: docker://quay.io/pypa/manylinux_2_24_i686
+        with:
+          entrypoint: linux32
+          args: bash /github/workspace/.github/workflows/build.sh
+      - name: Archive built wheels
+        uses: actions/upload-artifact@v2
+        with:
+          name: manylinux2_24_32
+          path: build/*.whl
+          if-no-files-found: error
