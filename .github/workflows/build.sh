@@ -24,7 +24,3 @@ for PYBIN in /opt/python/*/bin; do
     fi
     "${PYBIN}/python" setup.py bdist_wheel -d dist
 done
-for whl in dist/*.whl; do
-    auditwheel repair "$whl" -w dist/
-    rm "$whl"
-done
