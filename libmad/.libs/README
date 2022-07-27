@@ -1,0 +1,2 @@
+The location for the built binaries of the 'libmed' library.
+After building, the 'libmad.so' binary file should be located here.

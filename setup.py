@@ -22,6 +22,8 @@ MADMODULE = Extension(
     name='mad',
     sources=['src/madmodule.c', 'src/pymadfile.c', 'src/xing.c'],
     define_macros=DEFINES,
+    include_dirs=['libmad'],
+    library_dirs=['libmad/.libs'],
     libraries=['mad'])
 
 setup(  # Distribution metadata
