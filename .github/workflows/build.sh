@@ -9,6 +9,8 @@ cd "$( dirname -- "$0"; )/../../"
 mkdir -p libmad
 curl -L https://github.com/oleksiyskorodumov/libmad/tarball/master | tar -xzf - -C libmad --strip-components 1
 
+export LD_LIBRARY_PATH="$PWD/libmad/.libs"
+
 # build libmad
 cd libmad
 autoreconf -fi
