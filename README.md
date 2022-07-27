@@ -1,7 +1,7 @@
 pymad - a Python wrapper for the MPEG Audio Decoder library
 ===========================================================
 
-![ci](https://github.com/jaqx0r/pymad/workflows/CI/badge.svg)
+![ci](https://github.com/oleksiyskorodumov/pymad/workflows/CI/badge.svg)
 pymad is a Python module that allows Python programs to use the MPEG Audio Decoder library. pymad provides a high-level API, similar to the pyogg module, which makes reading PCM data from MPEG audio streams a piece of cake.
 
 MAD is available at http://www.mars.org/home/rob/proj/mpeg/
@@ -31,28 +31,35 @@ while 1:
     dev.play(buf, len(buf))
 ```
 
-
-To build, you need the distutils package, availible from
-http://www.python.org/sigs/distutils-sig/download.html (it comes with
-Python 2.0). Run `python setup.py build` to build and then as root run
-`python setup.py install`.
-
-if you've installed your mad stuff someplace weird you may need to run
-the config_unix.py script, passing it a `--prefix` value to create a
-`setup.cfg` file with the correct include and link dirs:
-
-```shell
-# python config_unix.py --prefix /usr/local
-# python setup.py build
-# python setup.py install --prefix /usr/local
+# Build libmad
+## Download libmad
+```sh
+mkdir -p libmad
+curl -L https://github.com/oleksiyskorodumov/libmad/tarball/master | tar -xzf - -C libmad --strip-components 1
 ```
 
-Remember to make sure `/usr/local/python/site-packages/` is in your
-Python search path in that example.
+## Build libmad
+```sh
+cd libmad
+autoreconf -fi
+./configure --prefix=/usr --disable-static
 
-Alternately, you can write `setup.cfg` yourself. E.g.:
+make
+```
 
-    [build_ext]
-    library_dirs=/opt/mad/lib
-    include_dirs=/opt/mad/include
-    libraries=name_of_library_mad_might_depend_on
+# Install
+## Install to active environment
+```sh
+python setup.py build
+python setup.py install
+```
+
+## Create .whl package
+```sh
+python" setup.py bdist_wheel -d dist
+```
+
+### Install from .whl package
+```sh
+pip install dist/pymad-<version>-<palatform>.whl
+```
