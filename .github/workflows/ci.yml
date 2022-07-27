@@ -42,6 +42,23 @@ jobs:
           path: build/*.whl
           if-no-files-found: error
 
+  publish_linux1_64:
+    # if: github.event_name == 'release' && github.event.action == 'created'
+    needs: [ build_linux1_64 ]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/download-artifact@v2
+      id: download
+      with:
+        name: manylinux1_64
+
+    - name: Publish package to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_API_TOKEN }}
+        packages_dir: ${{ steps.download.outputs.download-path }}
+
   build_linux1_32:
     runs-on: ubuntu-latest
 
@@ -58,6 +75,23 @@ jobs:
           name: manylinux1_32
           path: build/*.whl
           if-no-files-found: error
+
+  publish_linux1_32:
+    # if: github.event_name == 'release' && github.event.action == 'created'
+    needs: [ build_linux1_32 ]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/download-artifact@v2
+      id: download
+      with:
+        name: manylinux1_32
+
+    - name: Publish package to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_API_TOKEN }}
+        packages_dir: ${{ steps.download.outputs.download-path }}
 
   build_linux2_24_64:
     runs-on: ubuntu-latest
@@ -76,6 +110,23 @@ jobs:
           path: build/*.whl
           if-no-files-found: error
 
+  publish_linux2_24_64:
+    # if: github.event_name == 'release' && github.event.action == 'created'
+    needs: [ build_linux2_24_64 ]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/download-artifact@v2
+      id: download
+      with:
+        name: manylinux2_24_64
+
+    - name: Publish package to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_API_TOKEN }}
+        packages_dir: ${{ steps.download.outputs.download-path }}
+
   build_linux2_24_32:
     runs-on: ubuntu-latest
 
@@ -92,3 +143,20 @@ jobs:
           name: manylinux2_24_32
           path: build/*.whl
           if-no-files-found: error
+
+  publish_linux2_24_32:
+    # if: github.event_name == 'release' && github.event.action == 'created'
+    needs: [ build_linux2_24_32 ]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/download-artifact@v2
+      id: download
+      with:
+        name: manylinux2_24_32
+
+    - name: Publish package to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_API_TOKEN }}
+        packages_dir: ${{ steps.download.outputs.download-path }}
