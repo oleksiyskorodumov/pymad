@@ -28,7 +28,7 @@ jobs:
   build_linux1_64:
     runs-on: ubuntu-latest
 
-    steps:master
+    steps:main
           entrypoint: bash
           args: /github/workspace/.github/workflows/build.sh
       - name: Archive built wheels
