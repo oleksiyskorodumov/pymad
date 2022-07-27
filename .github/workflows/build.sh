@@ -22,6 +22,7 @@ for PYBIN in /opt/python/*/bin; do
     if [[ $PYBIN = *"cp27"* ]]; then
         continue
     fi
+    "${PYBIN}/python" -m pip install --user wheel
     "${PYBIN}/python" setup.py bdist_wheel -d dist
 done
 for whl in dist/*.whl; do
