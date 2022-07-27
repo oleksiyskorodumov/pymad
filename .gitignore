@@ -32,3 +32,6 @@ debian/python3-pymad-dbg
 debian/patches
 debian/.debhelper
 pymad.egg-info
+
+libmad/
+!libmad/README
