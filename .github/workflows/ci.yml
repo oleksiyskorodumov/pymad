@@ -1,6 +1,15 @@
 name: CI
-on: [push, pull_request]
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  release:
+    types: [ created ]
+
 jobs:
+
   test:
     runs-on: ubuntu-latest
     steps:
@@ -15,3 +24,20 @@ jobs:
           python config_unix.py
           python setup.py build
           python -m compileall -f .
+
+  build_linux1_64:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Execute the build
+        uses: docker://quay.io/pypa/manylinux1_x86_64
+        with:
+          entrypoint: bash
+          args: /github/workspace/.github/workflows/build.sh
+      - name: Archive built wheels
+        uses: actions/upload-artifact@v2
+        with:
+          name: manylinux1_64
+          path: dist/*.whl
+          if-no-files-found: error
