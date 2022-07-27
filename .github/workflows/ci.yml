@@ -28,7 +28,11 @@ jobs:
   build_linux1_64:
     runs-on: ubuntu-latest
 
-    steps:main
+    steps:
+      - uses: actions/checkout@v2
+      - name: Execute the build
+        uses: docker://quay.io/pypa/manylinux1_x86_64
+        with:
           entrypoint: bash
           args: /github/workspace/.github/workflows/build.sh
       - name: Archive built wheels
