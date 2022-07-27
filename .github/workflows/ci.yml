@@ -39,5 +39,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: manylinux1_64
-          path: dist/*.whl
+          path: build/*.whl
           if-no-files-found: error

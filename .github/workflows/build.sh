@@ -22,5 +22,10 @@ for PYBIN in /opt/python/*/bin; do
     if [[ $PYBIN = *"cp27"* ]]; then
         continue
     fi
-    "${PYBIN}/python" setup.py bdist_wheel -d dist
+    "${PYBIN}/python" setup.py bdist_wheel -b build/build_tmp -d build
+done
+
+for whl in build/*.whl; do
+    auditwheel repair "$whl" -w build/
+    rm "$whl"
 done

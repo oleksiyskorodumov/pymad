@@ -56,10 +56,10 @@ python setup.py install
 
 ## Create .whl package
 ```sh
-python" setup.py bdist_wheel -d dist
+python setup.py bdist_wheel -b build/build_tmp -d build
 ```
 
 ### Install from .whl package
 ```sh
-pip install dist/pymad-<version>-<palatform>.whl
+pip install build/pymad-<version>-<palatform>.whl
 ```
