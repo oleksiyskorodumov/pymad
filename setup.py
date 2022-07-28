@@ -44,6 +44,7 @@ setuptools.setup(  # Distribution metadata
     version=PYMAD_VERSION,
     description='A Python wrapper for the MPEG Audio Decoder library.',
     long_description=long_description,
+    long_description_content_type='text/x-rst',
     author='Jamie Wilkinson',
     author_email='jaq@spacepants.org',
     project_urls=project_urls,
