@@ -194,7 +194,7 @@ jobs:
       - uses: montudor/action-zip@v1
         name: Download libmad ZIP file
         with:
-          args: unzip -qq ${{ steps.downloadfile.outputs.filename }} -d libmad
+          args: unzip -qq libmad_zip/${{ steps.downloadfile.outputs.filename }} -d libmad
       - name: Dir
         run: |
           dir
