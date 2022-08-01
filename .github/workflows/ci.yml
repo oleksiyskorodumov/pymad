@@ -192,9 +192,9 @@ jobs:
           target: libmad_tar
       - name: Extract libmad arcive
         run: tar -xzf libmad_tar/${{ steps.downloadfile.outputs.filename }} -C libmad --strip-components 1
-      - name: Dir
+      - name: Build libmad
         run: |
-          dir
-          dir libmad_tar
-          dir libmad
-          dir libmad/.libs
+          cd libmad
+          autoreconf -fi
+          configure --prefix=/usr --disable-static
+          make
