@@ -186,10 +186,18 @@ jobs:
         run: python -m pip install --upgrade setuptools wheel
       - uses: suisei-cn/actions-download-file@v1
         id: downloadfile
-        name: Download ZIP file
+        name: Download libmad ZIP file
         with:
           url: "https://github.com/oleksiyskorodumov/libmad/archive/refs/heads/master.zip"
-          # target: libmad.zip
-      - name: Build the wheel
+
+          target: libmad_zip
+      - uses: montudor/action-zip@v1
+        name: Download libmad ZIP file
+        with:
+          args: unzip -qq ${{ steps.downloadfile.outputs.filename }} -d libmad
+      - name: Dir
         run: |
           dir
+      - name: Dir libmad
+        run: |
+          dir libmad
