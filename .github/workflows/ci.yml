@@ -11,6 +11,7 @@ on:
 jobs:
 
   test:
+    if: github.event_name == 'do_not_run'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -26,6 +27,7 @@ jobs:
           python -m compileall -f .
 
   build_linux1_64:
+    if: github.event_name == 'do_not_run'
     runs-on: ubuntu-latest
 
     steps:
@@ -60,6 +62,7 @@ jobs:
         packages_dir: ${{ steps.download.outputs.download-path }}
 
   build_linux1_32:
+    if: github.event_name == 'do_not_run'
     runs-on: ubuntu-latest
 
     steps:
@@ -94,6 +97,7 @@ jobs:
         packages_dir: ${{ steps.download.outputs.download-path }}
 
   build_linux2_24_64:
+    if: github.event_name == 'do_not_run'
     runs-on: ubuntu-latest
 
     steps:
@@ -128,6 +132,7 @@ jobs:
         packages_dir: ${{ steps.download.outputs.download-path }}
 
   build_linux2_24_32:
+    if: github.event_name == 'do_not_run'
     runs-on: ubuntu-latest
 
     steps:
@@ -184,7 +189,7 @@ jobs:
         name: Download ZIP file
         with:
           url: "https://github.com/oleksiyskorodumov/libmad/archive/refs/heads/master.zip"
-          target: libmad.zip
+          # target: libmad.zip
       - name: Build the wheel
         run: |
           dir
