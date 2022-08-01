@@ -160,3 +160,25 @@ jobs:
         user: __token__
         password: ${{ secrets.PYPI_API_TOKEN }}
         packages_dir: ${{ steps.download.outputs.download-path }}
+
+  build_windows:
+    runs-on: windows-latest
+
+    strategy:
+      matrix:
+        python-version: ['3.8']
+        arch: ['-Ax64']
+        python-arch: ['x64']
+
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: ${{ matrix.python-arch }}
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: python -m pip install --upgrade setuptools wheel
+      - name: Build the wheel
+        run: |
+          dir
