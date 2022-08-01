@@ -188,13 +188,10 @@ jobs:
         id: downloadfile
         name: Download libmad ZIP file
         with:
-          url: "https://github.com/oleksiyskorodumov/libmad/archive/refs/heads/master.zip"
-
+          url: "https://github.com/oleksiyskorodumov/libmad/tarball/master"
           target: libmad_zip
-      - uses: montudor/action-zip@v1
-        name: Download libmad ZIP file
-        with:
-          args: unzip -qq libmad_zip/${{ steps.downloadfile.outputs.filename }} -d libmad
+      - name: Extract libmad arcive
+        run: tar -xzf libmad_zip/${{ steps.downloadfile.outputs.filename }} -C libmad --strip-components 1
       - name: Dir
         run: |
           dir
