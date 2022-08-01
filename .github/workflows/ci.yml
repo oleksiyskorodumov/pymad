@@ -189,12 +189,12 @@ jobs:
         name: Download libmad ZIP file
         with:
           url: "https://github.com/oleksiyskorodumov/libmad/tarball/master"
-          target: libmad_zip
+          target: libmad_tar
       - name: Extract libmad arcive
-        run: tar -xzf libmad_zip/${{ steps.downloadfile.outputs.filename }} -C libmad --strip-components 1
+        run: tar -xzf libmad_tar/${{ steps.downloadfile.outputs.filename }} -C libmad --strip-components 1
       - name: Dir
         run: |
           dir
-      - name: Dir libmad
-        run: |
+          dir libmad_tar
           dir libmad
+          dir libmad/.libs
