@@ -179,6 +179,12 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install dependencies
         run: python -m pip install --upgrade setuptools wheel
+      - uses: suisei-cn/actions-download-file@v1
+        id: downloadfile
+        name: Download ZIP file
+        with:
+          url: "https://github.com/oleksiyskorodumov/libmad/archive/refs/heads/master.zip"
+          target: libmad.zip
       - name: Build the wheel
         run: |
           dir
