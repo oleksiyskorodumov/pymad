@@ -195,6 +195,5 @@ jobs:
       - name: Build libmad
         run: |
           cd libmad
-          autoreconf -fi
           configure --prefix=/usr --disable-static
           make
