@@ -201,7 +201,7 @@ jobs:
           msbuild "libmad\msvc++\libmad.vcxproj" /p:Configuration=Release
       - name: Build Wheel
         run: |
-          setup.py bdist_wheel -b build/build_tmp -d build
+          python setup.py bdist_wheel -b build/build_tmp -d build
       - name: Archive built wheels
         uses: actions/upload-artifact@v2
         with:
