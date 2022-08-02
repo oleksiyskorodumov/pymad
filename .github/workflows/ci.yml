@@ -192,8 +192,6 @@ jobs:
           target: libmad_tar
       - name: Extract libmad arcive
         run: tar -xzf libmad_tar/${{ steps.downloadfile.outputs.filename }} -C libmad --strip-components 1
-      - name: Build libmad
+      - name: Check 'msbuild' executable
         run: |
-          cd libmad
-          configure --prefix=/usr --disable-static
-          make
+          msbuild --version
