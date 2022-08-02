@@ -198,5 +198,5 @@ jobs:
           vs-version: '[17.2,17.3)'
       - name: Build libmad
         run: |
-          msbuild "libmad_tar\msvc++\libmad.vcxproj" /p:Configuration=Release
-          dir
+          msbuild "libmad\msvc++\libmad.vcxproj" /p:Configuration=Release
+          dir libmad\.libs
