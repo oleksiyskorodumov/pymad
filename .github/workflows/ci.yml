@@ -192,6 +192,10 @@ jobs:
           target: libmad_tar
       - name: Extract libmad arcive
         run: tar -xzf libmad_tar/${{ steps.downloadfile.outputs.filename }} -C libmad --strip-components 1
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.1
+        with:
+          vs-version: '[17.2,17.3)'
       - name: Check 'msbuild' executable
         run: |
           msbuild --version
