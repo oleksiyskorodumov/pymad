@@ -173,7 +173,7 @@ jobs:
       matrix:
         python-version: ['3.10']
         arch: ['-Ax64']
-        python-arch: ['x64']
+        python-arch: ['x86']
 
     steps:
       - name: Set up Python
