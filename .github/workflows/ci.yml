@@ -171,7 +171,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: ['3.8']
+        python-version: ['3.10']
         arch: ['-Ax64']
         python-arch: ['x64']
 
@@ -199,4 +199,12 @@ jobs:
       - name: Build libmad
         run: |
           msbuild "libmad\msvc++\libmad.vcxproj" /p:Configuration=Release
-          dir libmad\.libs
+      - name: Build Wheel
+        run: |
+          setup.py bdist_wheel -b build/build_tmp -d build
+      - name: Archive built wheels
+        uses: actions/upload-artifact@v2
+        with:
+          name: windows
+          path: build/*.whl
+          if-no-files-found: error
