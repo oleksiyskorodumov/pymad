@@ -162,7 +162,7 @@ jobs:
         packages_dir: ${{ steps.download.outputs.download-path }}
 
   build_windows:
-    # if: github.event_name == 'postpone build_windows as it is quite problematic to make it work'
+    if: github.event_name == 'postpone build_windows as it is quite problematic to make it work'
     runs-on: windows-latest
 
     strategy:
