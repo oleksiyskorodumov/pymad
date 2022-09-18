@@ -11,7 +11,7 @@
  * can be found at http://www.bsd-dk.dk/~elrond/audio/madlld/ and carries
  * the following copyright and license:
  *
- * The madlld program is � 2001 by Bertrand Petit, all rights reserved.
+ * The madlld program is (C) 2001 by Bertrand Petit, all rights reserved.
  * It is distributed under the terms of the license similar to the
  * Berkeley license reproduced below.
  *
