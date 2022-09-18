@@ -11,7 +11,7 @@
  * can be found at http://www.bsd-dk.dk/~elrond/audio/madlld/ and carries
  * the following copyright and license:
  *
- * The madlld program is © 2001 by Bertrand Petit, all rights reserved.
+ * The madlld program is ï¿½ 2001 by Bertrand Petit, all rights reserved.
  * It is distributed under the terms of the license similar to the
  * Berkeley license reproduced below.
  *
@@ -506,10 +506,12 @@ static PyObject *py_madfile_read(PyObject *self, PyObject *args) {
 
   Py_END_ALLOW_THREADS;
 
+  int nchannels = MAD_NCHANNELS(&PYMAD_FRAME(self).header);
+
   /* Create the buffer to store the PCM samples in, so python can
    * use it.  We do 2 pointer increments per sample in the buffer,
    * so make it 2 times as big as the number of samples */
-  size = PYMAD_SYNTH(self).pcm.length * 2 * sizeof(int16_t);
+  size = PYMAD_SYNTH(self).pcm.length * nchannels * sizeof(int16_t);
 
   output = output_buffer = malloc(size);
   if (!output_buffer) {
@@ -519,7 +521,7 @@ static PyObject *py_madfile_read(PyObject *self, PyObject *args) {
   }
 
   /* die if we don't have the space */
-  if (size < PYMAD_SYNTH(self).pcm.length * 4) {
+  if (size < PYMAD_SYNTH(self).pcm.length * 2 * nchannels) {
     PyErr_SetString(PyExc_MemoryError, "allocated buffer too small");
     return NULL;
   }
@@ -540,10 +542,11 @@ static PyObject *py_madfile_read(PyObject *self, PyObject *args) {
     /* right channel.
      * if the decoded stream is monophonic then the right channel
      * is the same as the left one */
-    if (MAD_NCHANNELS(&PYMAD_FRAME(self).header) == 2)
+    if (nchannels == 2) {
       sample = madfixed_to_int16(PYMAD_SYNTH(self).pcm.samples[1][i]);
 
-    *(output++) = sample;
+      *(output++) = sample;
+    }
   }
 
   Py_END_ALLOW_THREADS;
